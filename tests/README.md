@@ -7,4 +7,4 @@
 | HF voice download | PASS | 4 voices (.onnx ~114-121 MB + .json), all HTTP 200 |
 | Podcast sources | PASS | AI Daily Brief RSS 200, 8,354,265 B, newest "Companies Are Spending 5x More on AI Now" (description 4838 chars); Lex RSS 200, 2,091,849 B; Lex transcript 200, 438,424 B, ~39.7k words (raw text incl. nav/markup; page is likely a long transcript) |
 | Voice samples | PASS | tests/voice-*.mp3 for lessac, ryan, ljspeech, cori (mono 64 kbps); ~3 s render each |
-| Git push | see report | |
+| Git push | PASS | pushed directly to main (4f9bac6..dee6f09) |
