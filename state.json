@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "aidb_last": "2026-11-07T00:24:27+00:00",
+  "lex_done": [
+    "https://lexfridman.com/math-ai-crisis-transcript"
+  ],
+  "acquired_done": [
+    "c42b01bab0f14dfc8ed136c3066bbffc"
+  ],
+  "history": [
+    {
+      "date": "2026-11-07",
+      "aidb": [
+        "Companies Are Spending 5x More on AI Now"
+      ],
+      "lex": "#503 \u2013 AI Crisis in Math: Navier-Stokes, Riemann Hypothesis & Complexity Theory",
+      "acquired": "Pixar"
+    }
+  ]
+}
