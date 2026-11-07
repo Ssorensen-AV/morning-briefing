@@ -13,7 +13,7 @@ Use exactly these `## ` sections, in this order, and leave out any section with 
 | `## Good Morning` | 70–110 words | The day and date, plus a one-line preview of each section. |
 | `## AI News` | 350–600 words | From the AI Daily Brief show notes (see below). |
 | `## AI Deep Dive: <guest or topic>` | the rest of the AI time | From the Lex Fridman transcript. |
-| `## Acquired: <episode title>` | about 1,500 words (about 10 minutes) | See below. |
+| `## Acquired: <episode title>` | 3,100–3,500 words (at least 20 minutes) | See below. |
 | `## Sign-off` | 40–70 words | Where we are in the Acquired catalog ("episode 12 of 217"), plus a light parting line. |
 
 **AI News and AI Deep Dive together should total about 1,500 words (about 10 minutes).**
@@ -31,8 +31,8 @@ Use the same `## ` headings as the script, but only for AI News, AI Deep Dive an
   - Cover the guest, the three or four most interesting ideas, one or two memorable quotes (short and clearly attributed), and why it matters.
   - If the episode is from the archive, say so naturally, with something like "from the Lex archive, back in 2019".
   - Note anything that has aged well or badly, but only where it's well established.
-- **Acquired, with a full transcript.** Tell it as a story: the company's origin, the deal, the key numbers, what made it work or not, and the hosts' main takeaways and grades. Attribute opinions to Ben and David.
-- **Acquired, show notes only** (marked in sources.md). Say up front, in one sentence, that this early episode has no published transcript, so you're telling the story of the deal itself. Then tell it from well-established public facts, and don't put words in the hosts' mouths. Keep it to about 1,200–1,500 words.
+- **Acquired, with a full transcript.** Tell it as a story: the company's origin, the founders and key people, the deal, the key numbers, what made it work or not, and the hosts' main takeaways and grades. Attribute opinions to Ben and David. There's room for depth here, so include the turning points, the near-misses and the best anecdotes from the episode.
+- **Acquired, show notes only** (marked in sources.md). Say up front, in one sentence, that this early episode has no published transcript, so you're telling the story of the deal itself. Then tell the full story from well-established public facts, and don't put words in the hosts' mouths. To reach the 20-minute minimum, go wide rather than padding: the founders and early years, the products and the market at the time, the deal itself and the numbers, what happened afterward, how it looks with hindsight today, and two or three lessons an operator could take from it. It must still reach at least 3,100 words.
 
 ## Writing for the ear
 
@@ -51,5 +51,4 @@ Cori reads at about 150 words per minute. After rendering, `work/audio.json` lis
 | If this happens | Do this |
 |---|---|
 | The two AI sections total under 8 or over 12 minutes | Revise the script once and render again. |
-| Acquired is under 8 or over 12 minutes | Revise the script once and render again. |
-| It's show-notes-only with thin material | A short Acquired section (down to about 6 minutes) is fine. |
+| Acquired is under 20 or over 25 minutes | Revise the script and render again. If it's still under 20, expand it and render once more. Acquired must never be under 20 minutes, transcript or not. |

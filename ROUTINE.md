@@ -16,7 +16,7 @@ You are producing today's Morning Briefing. Work from the repository root. These
 
 4. **Write.** Follow `briefing/STYLE.md` exactly. Write `work/script.md` and `work/highlights.md`.
 
-5. **Record.** Run `python3 briefing/speak.py work/briefing.mp3`. Then check `work/audio.json` against the length check in STYLE.md, revising and re-rendering once if needed.
+5. **Record.** Run `python3 briefing/speak.py work/briefing.mp3`. Then check `work/audio.json` against the length check in STYLE.md, revising and re-rendering as that check says.
 
 6. **Publish the audio.** Run `URL=$(python3 briefing/publish.py work/briefing.mp3 $DAY)`.
 
@@ -33,7 +33,7 @@ You are producing today's Morning Briefing. Work from the repository root. These
    1. Run `python3 briefing/gather.py --commit`.
    2. Save the script as `scripts/$DAY.md`.
    3. `git add state.json scripts`, then commit "Briefing $DAY".
-   4. `git pull --rebase -q`, then `git push origin HEAD:main`.
+   4. `git pull --rebase -q origin main`, then `git push origin HEAD:main`.
 
 ## If something fails
 
