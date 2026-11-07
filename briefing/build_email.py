@@ -97,16 +97,17 @@ def build(url):
 
     acq = sel.get("acquired")
     progress = (f"Acquired catalog: episode {acq['position']} of {acq['total']}" if acq else "")
-    html_out = f"""<!doctype html><html><body style="margin:0;padding:0;background:{PAPER}">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:{PAPER}"><tr><td align="center" style="padding:24px 12px">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:{CARD};border-radius:14px;overflow:hidden">
-<tr><td style="background:{INK};padding:32px 32px 28px">
+    html_out = f"""<!doctype html><html><head><meta name="color-scheme" content="light dark"><meta name="supported-color-schemes" content="light dark"></head>
+<body style="margin:0;padding:0;background-color:{PAPER}" bgcolor="{PAPER}">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="{PAPER}" style="background-color:{PAPER}"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="{CARD}" style="max-width:600px;background-color:{CARD};border-radius:14px;overflow:hidden">
+<tr><td bgcolor="{INK}" style="background-color:{INK};background-image:linear-gradient({INK},{INK});padding:32px 32px 28px;border-radius:14px 14px 0 0">
   <div style="font:600 11px {SANS};letter-spacing:.2em;text-transform:uppercase;color:{ACCENT}">Morning Briefing</div>
   <div style="font:30px/1.2 {SERIF};color:#ffffff;margin-top:8px">{e(date_line)}</div>
   <div style="font:14px {SANS};color:#aab2bf;margin-top:6px">{audio["minutes"]} minutes &middot; read by Cori</div>
   <table role="presentation" cellpadding="0" cellspacing="0" style="margin-top:22px"><tr>
-    <td style="background:{ACCENT};border-radius:999px"><a href="{e(url)}"
-      style="display:inline-block;padding:13px 26px;font:600 15px {SANS};color:{INK};text-decoration:none">&#9654;&nbsp; Listen now</a></td></tr></table>
+    <td bgcolor="{ACCENT}" style="background-color:{ACCENT};border-radius:999px"><a href="{e(url)}" target="_blank"
+      style="display:inline-block;padding:13px 26px;background-color:{ACCENT};border:1px solid {ACCENT};border-radius:999px;font:600 15px {SANS};color:{INK};text-decoration:none">&#9654;&nbsp; Listen now</a></td></tr></table>
 </td></tr>
 <tr><td style="padding:24px 32px 4px">
   <div style="font:600 11px {SANS};letter-spacing:.14em;text-transform:uppercase;color:{MUTED};margin-bottom:6px">In this briefing</div>
@@ -115,7 +116,7 @@ def build(url):
 <tr><td style="padding:0 32px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">{blocks}</table></td></tr>
 <tr><td style="padding:32px;font:12px/1.6 {SANS};color:{MUTED}">
   <div style="border-top:1px solid {RULE};padding-top:16px">{e(progress)}<br>
-  The audio link opens in GitHub; sign in once and it plays in the browser.</div>
+  The Listen button opens the audio in your browser; no sign-in needed.</div>
 </td></tr></table></td></tr></table></body></html>"""
 
     txt = [f"MORNING BRIEFING: {date_line}", f"{audio['minutes']} minutes. Listen: {url}", ""]
