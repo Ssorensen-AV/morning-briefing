@@ -26,6 +26,7 @@ AIDB_RSS = "https://anchor.fm/s/f7cac464/podcast/rss"
 LEX_RSS = "https://lexfridman.com/feed/podcast/"
 ACQ_RSS = "https://feeds.transistor.fm/acquired"
 ACQ_SITEMAP = "https://www.acquired.fm/sitemap.xml"
+TLDR_RSS = "https://tldr.tech/api/rss/ai"
 UA = {"User-Agent": "Mozilla/5.0 (Macintosh) morning-briefing/1.0"}
 
 LEX_NEW_DAYS = 14   # a Lex episode this recent jumps ahead of the back catalog
@@ -100,7 +101,7 @@ def load_state():
     if os.path.exists(STATE):
         with open(STATE) as f:
             return json.load(f)
-    return {"version": 1, "aidb_last": None, "lex_done": [], "acquired_done": [], "history": []}
+    return {"version": 1, "aidb_last": None, "tldr_last": None, "lex_done": [], "acquired_done": [], "history": []}
 
 
 # ---------------------------------------------------------------- transcript extractors
@@ -249,6 +250,21 @@ def acq_page_for(item, slugs):
     return "https://www.acquired.fm/episodes/" + best if score >= 0.6 else None
 
 
+def tldr_issue(url):
+    """A TLDR AI issue page: sections of articles, each a title and a short summary. Sponsors dropped."""
+    page = get(url)
+    out = []
+    for sec in re.findall(r"(?s)<section>(.*?)</section>", page):
+        arts = re.findall(r'(?s)<article.*?<h3>(.*?)</h3>.*?<div class="newsletter-html">(.*?)</div>\s*</article>', sec)
+        arts = [(strip_html(t), strip_html(b)) for t, b in arts]
+        arts = [(t, b) for t, b in arts if "(sponsor)" not in t.lower()]
+        if not arts:
+            continue
+        h = re.search(r'<h3 class="[^"]*font-bold[^"]*">(.*?)</h3>', sec)
+        out.append((strip_html(h.group(1)) if h else "", arts))
+    return out
+
+
 def acq_items():
     return [i for i in parse_feed(get(ACQ_RSS)) if not i["title"].lower().startswith("trailer")]
 
@@ -266,6 +282,32 @@ def gather_aidb(state, sel, md):
     for i in aidb:
         md.append(f"### {i['title']}  ({i['date']:%a %b %-d})\n")
         md.append(wrap(strip_html(i["notes_html"])) + "\n")
+
+
+def gather_tldr(state, sel, md):
+    """TLDR AI newsletter: the newest issue not yet covered (weekdays only, so weekends have none)."""
+    items = [i for i in parse_feed(get(TLDR_RSS)) if re.search(r"/ai/\d{4}-\d{2}-\d{2}$", i["link"])]
+    last = state.get("tldr_last")
+    new = [i for i in items if last is None or i["link"].rsplit("/", 1)[1] > last]
+    md.append("## SOURCE: TLDR AI newsletter (the full issue; sponsor items already removed)\n")
+    sel["tldr"] = None
+    if not new:
+        md.append("No new issue since the last briefing.\n")
+        return
+    i = new[-1]
+    day = i["link"].rsplit("/", 1)[1]
+    sections = tldr_issue(i["link"])
+    if not sections:
+        raise ValueError(f"no stories found on {i['link']}")
+    n = sum(len(a) for _, a in sections)
+    words = sum(len(t.split()) + len(b.split()) for _, a in sections for t, b in a)
+    sel["tldr"] = {"date": day, "title": i["title"], "link": i["link"], "stories": n, "words": words}
+    md.append(f"### TLDR AI, {dt.date.fromisoformat(day):%A, %B %-d}: {i['title']}  ({n} stories)\n")
+    for head, arts in sections:
+        md.append(f"#### {head or 'Stories'}\n")
+        for t, b in arts:
+            md.append(f"- **{t}**: {b}")
+        md.append("")
 
 
 def gather_lex(state, sel, md):
@@ -314,7 +356,8 @@ def gather():
     os.makedirs(WORK, exist_ok=True)
     sel, md, errors = {}, [], []
     md.append(f"# Source material for the briefing ({local_now():%A, %B %-d, %Y})\n")
-    for name, step in (("aidb", gather_aidb), ("lex", gather_lex), ("acquired", gather_acquired)):
+    for name, step in (("tldr", gather_tldr), ("aidb", gather_aidb), ("lex", gather_lex),
+                       ("acquired", gather_acquired)):
         try:
             step(state, sel, md)
         except Exception as e:                      # one site being down should not sink the briefing
@@ -335,12 +378,15 @@ def commit():
     state = load_state()
     if sel.get("aidb"):
         state["aidb_last"] = max(i["date"] for i in sel["aidb"])
+    if sel.get("tldr"):
+        state["tldr_last"] = sel["tldr"]["date"]
     if sel.get("lex"):
         state["lex_done"].append(sel["lex"]["url"])
     if sel.get("acquired"):
         state["acquired_done"].append(sel["acquired"]["guid"])
     state["history"].append({
         "date": local_now().date().isoformat(),
+        "tldr": (sel.get("tldr") or {}).get("date"),
         "aidb": [i["title"] for i in sel.get("aidb") or []],
         "lex": (sel.get("lex") or {}).get("title"),
         "acquired": (sel.get("acquired") or {}).get("title"),

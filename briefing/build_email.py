@@ -45,6 +45,8 @@ def highlights():
 
 def source_links(sel):
     links = {}
+    if sel.get("tldr"):
+        links["tldr"] = [(f"TLDR AI: {sel['tldr']['title']}", sel["tldr"]["link"])]
     for i in sel.get("aidb") or []:
         links.setdefault("ai", []).append((f"The AI Daily Brief: {i['title']}", i["link"]))
     if sel.get("lex"):
@@ -56,6 +58,8 @@ def source_links(sel):
 
 def links_for(title, links):
     t = title.lower()
+    if "tldr" in t:
+        return links.get("tldr", [])
     if "acquired" in t:
         return links.get("acquired", [])
     if "lex" in t or "deep dive" in t:
