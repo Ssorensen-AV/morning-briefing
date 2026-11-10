@@ -1,15 +1,17 @@
 {
   "version": 1,
-  "aidb_last": "2026-11-08T12:05:09+00:00",
+  "aidb_last": "2026-11-09T19:34:01+00:00",
   "lex_done": [
     "https://lexfridman.com/math-ai-crisis-transcript",
     "https://lexfridman.com/kyle-vogt-transcript",
-    "https://lexfridman.com/sean-carroll-transcript"
+    "https://lexfridman.com/sean-carroll-transcript",
+    "https://lexfridman.com/tom-brands-transcript"
   ],
   "acquired_done": [
     "c42b01bab0f14dfc8ed136c3066bbffc",
     "242a738f9c0c4acf81edc6b22287a95c",
-    "755f4e36a056482aaca897fde45a9989"
+    "755f4e36a056482aaca897fde45a9989",
+    "d77bb7b9cdad4292b2831def25aa1d90"
   ],
   "history": [
     {
@@ -33,6 +35,16 @@
       "aidb": [],
       "lex": "Sean Carroll: The Nature of the Universe, Life, and Intelligence",
       "acquired": "Twitch"
+    },
+    {
+      "date": "2026-11-10",
+      "tldr": "2026-11-09",
+      "aidb": [
+        "Nvidia CEO Admits Affair With Suspected Chinese Spy"
+      ],
+      "lex": "#245 \u2013 Tom Brands: Iowa Wrestling",
+      "acquired": "Bungie (with Xbox Co-Founder Ed Fries)"
     }
-  ]
+  ],
+  "tldr_last": "2026-11-09"
 }
