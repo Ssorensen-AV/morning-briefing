@@ -1,13 +1,14 @@
 {
   "version": 1,
-  "aidb_last": "2026-11-11T21:16:03+00:00",
+  "aidb_last": "2026-11-12T18:44:45+00:00",
   "lex_done": [
     "https://lexfridman.com/math-ai-crisis-transcript",
     "https://lexfridman.com/kyle-vogt-transcript",
     "https://lexfridman.com/sean-carroll-transcript",
     "https://lexfridman.com/tom-brands-transcript",
     "https://lexfridman.com/preston-stewart-michael-kofman-transcript",
-    "https://lexfridman.com/michael-saylor-transcript"
+    "https://lexfridman.com/michael-saylor-transcript",
+    "https://lexfridman.com/nick-lane-transcript"
   ],
   "acquired_done": [
     "c42b01bab0f14dfc8ed136c3066bbffc",
@@ -15,7 +16,8 @@
     "755f4e36a056482aaca897fde45a9989",
     "d77bb7b9cdad4292b2831def25aa1d90",
     "f5f8c5af7f8444f595929d8e1a74b54d",
-    "41de9a1f06ec4e5c8e80df4d05dc7ce3"
+    "41de9a1f06ec4e5c8e80df4d05dc7ce3",
+    "23a8377b2bde49b88abc56c9ba1502da"
   ],
   "history": [
     {
@@ -66,7 +68,16 @@
       ],
       "lex": "#276 \u2013 Michael Saylor: Bitcoin, Inflation, and the Future of Money",
       "acquired": "Lucasfilm"
+    },
+    {
+      "date": "2026-11-13",
+      "tldr": "2026-11-13",
+      "aidb": [
+        "Jensen Huang Is Out. Everything in AI Is Now Up for Grabs."
+      ],
+      "lex": "#318 \u2013 Nick Lane: Origin of Life, Evolution, Aliens, Biology, and Consciousness",
+      "acquired": "YouTube"
     }
   ],
-  "tldr_last": "2026-11-11"
+  "tldr_last": "2026-11-13"
 }
