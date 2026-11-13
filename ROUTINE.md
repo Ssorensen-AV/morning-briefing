@@ -3,7 +3,7 @@
 You are producing today's Morning Briefing. Work from the repository root. These rules apply to the whole run:
 
 - **Never send email.** Only create a Gmail draft, with the Gmail connector's `create_draft`.
-- **Use no other connectors.**
+- **Use no other connectors.** WebSearch is allowed only to confirm Packers TV coverage, as STYLE.md describes.
 - **Don't edit the code** in `briefing/` unless a step fails because of it. If you do, say so in the final reply.
 
 ## Steps

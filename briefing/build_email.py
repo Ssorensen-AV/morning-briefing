@@ -45,6 +45,8 @@ def highlights():
 
 def source_links(sel):
     links = {}
+    if sel.get("packers"):
+        links["packers"] = [(f"ESPN: {sel['packers']['game']}", sel["packers"]["link"])]
     if sel.get("tldr"):
         links["tldr"] = [(f"TLDR AI: {sel['tldr']['title']}", sel["tldr"]["link"])]
     for i in sel.get("aidb") or []:
@@ -58,6 +60,8 @@ def source_links(sel):
 
 def links_for(title, links):
     t = title.lower()
+    if "packers" in t:
+        return links.get("packers", [])
     if "tldr" in t:
         return links.get("tldr", [])
     if "acquired" in t:

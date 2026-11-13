@@ -27,6 +27,7 @@ LEX_RSS = "https://lexfridman.com/feed/podcast/"
 ACQ_RSS = "https://feeds.transistor.fm/acquired"
 ACQ_SITEMAP = "https://www.acquired.fm/sitemap.xml"
 TLDR_RSS = "https://tldr.tech/api/rss/ai"
+ESPN = "https://site.api.espn.com/apis/site/v2/sports/football/nfl"
 UA = {"User-Agent": "Mozilla/5.0 (Macintosh) morning-briefing/1.0"}
 
 LEX_NEW_DAYS = 14   # a Lex episode this recent jumps ahead of the back catalog
@@ -265,6 +266,165 @@ def tldr_issue(url):
     return out
 
 
+def get_json(url):
+    return json.loads(get(url))
+
+
+# Free over-the-air stations in the San Francisco Bay Area, by network.
+SF_STATIONS = {"FOX": "KTVU FOX 2", "CBS": "KPIX CBS 5", "NBC": "KNTV NBC 11", "ABC": "KGO ABC 7"}
+
+
+def packers_delivery_day(game_local):
+    """The briefing day that carries the Packers preview: Friday for a Saturday to Monday game,
+    otherwise the day before (Thursday game -> Wednesday)."""
+    wd = game_local.weekday()                      # Monday 0 ... Sunday 6
+    if wd in (5, 6, 0):
+        back = (wd - 4) % 7                        # back to Friday
+    else:
+        back = 1
+    return game_local.date() - dt.timedelta(days=back)
+
+
+def networks(comp):
+    out = []
+    for b in comp.get("broadcasts") or []:
+        out += b.get("names") or [((b.get("media") or {}).get("shortName"))]
+    return [n for n in out if n]
+
+
+def sf_tv(game, comp, game_utc):
+    """Best judgment on whether the game is on free over-the-air TV in the San Francisco market."""
+    nets = [n.upper() for n in networks(comp)]
+    on_air = [n for n in nets if n in SF_STATIONS]
+    if not nets:
+        return {"verdict": "unknown", "why": "No network has been announced yet."}
+    if not on_air:
+        return {"verdict": "no", "why": f"It's on {', '.join(networks(comp))}, which is streaming or cable only "
+                "in the Bay Area; local over-the-air simulcasts happen only in the two teams' home markets."}
+    net = on_air[0]
+    station = SF_STATIONS[net]
+    if net in ("NBC", "ABC") or game_utc.astimezone(dt.timezone(dt.timedelta(hours=-5))).weekday() != 6:
+        return {"verdict": "yes", "station": station,
+                "why": f"{net} carries it nationally, so it's on {station}."}
+    # A Sunday afternoon FOX or CBS game: regional unless it's the network's only game in that window.
+    day = game_utc.astimezone(dt.timezone(dt.timedelta(hours=-5))).strftime("%Y%m%d")
+    board = get_json(f"{ESPN}/scoreboard?dates={day}").get("events", [])
+    same_window, niners = [], None
+    for e in board:
+        c = e["competitions"][0]
+        when = dt.datetime.fromisoformat(e["date"].replace("Z", "+00:00"))
+        if abs((when - game_utc).total_seconds()) <= 3600 and net in [n.upper() for n in networks(c)]:
+            same_window.append(e["shortName"])
+        if any(t["team"]["abbreviation"] == "SF" for t in c["competitors"]):
+            niners = (e["shortName"], [n.upper() for n in networks(c)], when)
+    clash = niners and net in niners[1] and abs((niners[2] - game_utc).total_seconds()) <= 3600 \
+        and niners[0] != game["shortName"]
+    if clash:
+        return {"verdict": "no", "station": station,
+                "why": f"The 49ers ({niners[0]}) are on {net} in the same window, so {station} will carry them."}
+    if len(same_window) <= 1:
+        return {"verdict": "yes", "station": station,
+                "why": f"It's {net}'s only game in that window, so it goes out nationally on {station}."}
+    note = f"{net} has {len(same_window)} games in that window ({', '.join(same_window)}), so it's regional"
+    if niners:
+        note += f"; the 49ers play {niners[0]} on {'/'.join(niners[1]) or 'TBD'} that day"
+    return {"verdict": "maybe", "station": station,
+            "why": note + f". Whether {station} picks the Packers depends on {net}'s coverage map."}
+
+
+def gather_packers(sel, md, force=False):
+    """Packers preview: only on the briefing day before game week's game (see packers_delivery_day)."""
+    sel["packers"] = None
+    today = local_now()
+    events = get_json(f"{ESPN}/teams/gb/schedule").get("events", [])
+    upcoming = []
+    for e in events:
+        when = dt.datetime.fromisoformat(e["date"].replace("Z", "+00:00"))
+        if e["competitions"][0]["status"]["type"].get("state") == "pre" and when > today:
+            upcoming.append((when, e))
+    if not upcoming:
+        return
+    when, game = min(upcoming, key=lambda x: x[0])
+    local = when.astimezone(today.tzinfo)
+    due = packers_delivery_day(local)
+    if not force and today.date() != due:
+        return
+    comp = game["competitions"][0]
+    summary = get_json(f"{ESPN}/summary?event={game['id']}")
+    home = next(t for t in comp["competitors"] if t["homeAway"] == "home")
+    away = next(t for t in comp["competitors"] if t["homeAway"] == "away")
+    gb_home = home["team"]["abbreviation"] == "GB"
+    opp = (away if gb_home else home)["team"]
+    odds = None
+    for p in summary.get("pickcenter") or []:
+        odds = {"source": (p.get("provider") or {}).get("name"), "spread": p.get("details"),
+                "over_under": p.get("overUnder"),
+                "gb_moneyline": ((p.get("homeTeamOdds") if gb_home else p.get("awayTeamOdds")) or {}).get("moneyLine"),
+                "opp_moneyline": ((p.get("awayTeamOdds") if gb_home else p.get("homeTeamOdds")) or {}).get("moneyLine")}
+        break
+    detail = {}
+    for t in summary.get("injuries") or []:
+        if t["team"]["abbreviation"] == "GB":
+            for i in t.get("injuries") or []:
+                a = i.get("athlete") or {}
+                what = (i.get("details") or {}).get("type") or (i.get("type") or {}).get("description")
+                if what and what.lower() not in (i.get("status") or "").lower():
+                    detail[a.get("displayName")] = what
+    starters = set()
+    try:
+        for unit in get_json(f"{ESPN}/teams/gb/depthcharts").get("depthchart", []):
+            for pos in unit.get("positions", {}).values():
+                if pos.get("athletes"):
+                    starters.add(pos["athletes"][0]["displayName"])
+    except Exception:
+        pass
+    hurt = []
+    for g in get_json(f"{ESPN}/teams/gb/roster").get("athletes", []):
+        for a in g.get("items", []):
+            for i in a.get("injuries") or []:
+                hurt.append({"name": a["displayName"], "pos": (a.get("position") or {}).get("abbreviation"),
+                             "status": i.get("status"), "since": (i.get("date") or "")[:10],
+                             "injury": detail.get(a["displayName"]),
+                             "years": (a.get("experience") or {}).get("years"),
+                             "depth_chart_starter": a["displayName"] in starters})
+                break
+    tv = sf_tv(game, comp, when)
+    time_known = game.get("timeValid", True)
+    link = next((l["href"] for l in game.get("links", []) if "gamecast" in (l.get("rel") or [])), None) \
+        or f"https://www.espn.com/nfl/game/_/gameId/{game['id']}"
+    sel["packers"] = {"game": game["name"], "short": game["shortName"], "link": link,
+                      "kickoff_pt": local.isoformat() if time_known else None, "networks": networks(comp),
+                      "sf_tv": tv}
+    md.append("## SOURCE: Green Bay Packers game preview (ESPN data, fetched this morning)\n")
+    md.append(f"- Game: {game['name']} ({'home at ' if gb_home else 'away at '}"
+              f"{(summary.get('gameInfo') or {}).get('venue', {}).get('fullName', 'venue TBD')})")
+    md.append(f"- Opponent: {opp.get('displayName')}")
+    md.append(f"- Kickoff: {local:%A, %B %-d at %-I:%M %p} Pacific" if time_known
+              else f"- Kickoff: {local:%A, %B %-d}, time not set yet (the league flexes late-season times)")
+    md.append(f"- TV/streaming: {', '.join(networks(comp)) or 'not announced yet'}")
+    md.append(f"- On free TV in the San Francisco market: {tv['verdict'].upper()}. {tv['why']}")
+    if odds:
+        md.append(f"- Odds ({odds['source']}): spread {odds['spread']}, over/under {odds['over_under']}, "
+                  f"moneyline Packers {odds['gb_moneyline']}, {opp.get('shortDisplayName')} {odds['opp_moneyline']}")
+    else:
+        md.append("- Odds: not posted yet")
+    for t in comp["competitors"]:
+        rec = (t.get("record") or [{}])[0].get("displayValue") if t.get("record") else None
+        if rec:
+            md.append(f"- Record: {t['team']['displayName']} {rec}")
+    md.append("- Packers injuries (status, injury if known, date listed, years in the league, "
+              "whether ESPN's depth chart lists him as a starter):")
+    for h in sorted(hurt, key=lambda h: (h["status"] != "Out", h["status"] != "Injured Reserve", h["name"])):
+        md.append(f"  - {h['name']}, {h['pos']}: {h['status']}" + (f", {h['injury']}" if h["injury"] else "")
+                  + f", since {h['since']}, {h['years']} yrs" + (", starter" if h["depth_chart_starter"] else ""))
+    keys = ("packers", "green bay", (opp.get("name") or "").lower(), (opp.get("location") or "").lower())
+    news = [n.get("headline") for n in (summary.get("news") or {}).get("articles", [])
+            if n.get("headline") and any(k and k in n["headline"].lower() for k in keys)][:5]
+    if news:
+        md.append("- Recent ESPN headlines for context: " + " | ".join(news))
+    md.append("")
+
+
 def acq_items():
     return [i for i in parse_feed(get(ACQ_RSS)) if not i["title"].lower().startswith("trailer")]
 
@@ -356,8 +516,10 @@ def gather():
     os.makedirs(WORK, exist_ok=True)
     sel, md, errors = {}, [], []
     md.append(f"# Source material for the briefing ({local_now():%A, %B %-d, %Y})\n")
+    force_gb = os.environ.get("PACKERS_FORCE") == "1"
     for name, step in (("tldr", gather_tldr), ("aidb", gather_aidb), ("lex", gather_lex),
-                       ("acquired", gather_acquired)):
+                       ("acquired", gather_acquired),
+                       ("packers", lambda st, se, m: gather_packers(se, m, force_gb))):
         try:
             step(state, sel, md)
         except Exception as e:                      # one site being down should not sink the briefing
