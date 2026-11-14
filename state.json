@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "aidb_last": "2026-11-12T18:44:45+00:00",
+  "aidb_last": "2026-11-13T19:59:53+00:00",
   "lex_done": [
     "https://lexfridman.com/math-ai-crisis-transcript",
     "https://lexfridman.com/kyle-vogt-transcript",
@@ -8,7 +8,8 @@
     "https://lexfridman.com/tom-brands-transcript",
     "https://lexfridman.com/preston-stewart-michael-kofman-transcript",
     "https://lexfridman.com/michael-saylor-transcript",
-    "https://lexfridman.com/nick-lane-transcript"
+    "https://lexfridman.com/nick-lane-transcript",
+    "https://lexfridman.com/ben-shapiro-transcript"
   ],
   "acquired_done": [
     "c42b01bab0f14dfc8ed136c3066bbffc",
@@ -17,7 +18,8 @@
     "d77bb7b9cdad4292b2831def25aa1d90",
     "f5f8c5af7f8444f595929d8e1a74b54d",
     "41de9a1f06ec4e5c8e80df4d05dc7ce3",
-    "23a8377b2bde49b88abc56c9ba1502da"
+    "23a8377b2bde49b88abc56c9ba1502da",
+    "769092593be74c249d88e96189f0d105"
   ],
   "history": [
     {
@@ -77,6 +79,15 @@
       ],
       "lex": "#318 \u2013 Nick Lane: Origin of Life, Evolution, Aliens, Biology, and Consciousness",
       "acquired": "YouTube"
+    },
+    {
+      "date": "2026-11-14",
+      "tldr": null,
+      "aidb": [
+        "Washington Is Taking Control of AI"
+      ],
+      "lex": "#336 \u2013 Ben Shapiro: Politics, Kanye, Trump, Biden, Hitler, Extremism, and War",
+      "acquired": "Acompli, Sunrise, and Wunderlist (with Kurt DelBene)"
     }
   ],
   "tldr_last": "2026-11-13"
