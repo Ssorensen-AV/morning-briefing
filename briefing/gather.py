@@ -422,6 +422,13 @@ def gather_packers(sel, md, force=False):
             if n.get("headline") and any(k and k in n["headline"].lower() for k in keys)][:5]
     if news:
         md.append("- Recent ESPN headlines for context: " + " | ".join(news))
+    art = summary.get("article") or {}
+    story = strip_html(art.get("story") or "")
+    if art.get("headline") or story:
+        words = story.split()
+        md.append(f"- Game preview story (AP via ESPN), for the storyline. Summarize in your own words; "
+                  f"don't read it out.\n  Headline: {art.get('headline', '')}\n  "
+                  + " ".join(words[:600]) + (" ..." if len(words) > 600 else ""))
     md.append("")
 
 
