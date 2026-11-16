@@ -10,7 +10,8 @@
     "https://lexfridman.com/michael-saylor-transcript",
     "https://lexfridman.com/nick-lane-transcript",
     "https://lexfridman.com/ben-shapiro-transcript",
-    "https://lexfridman.com/jimmy-wales-transcript"
+    "https://lexfridman.com/jimmy-wales-transcript",
+    "https://lexfridman.com/george-hotz-3-transcript"
   ],
   "acquired_done": [
     "c42b01bab0f14dfc8ed136c3066bbffc",
@@ -21,7 +22,8 @@
     "41de9a1f06ec4e5c8e80df4d05dc7ce3",
     "23a8377b2bde49b88abc56c9ba1502da",
     "769092593be74c249d88e96189f0d105",
-    "e2a1607ed8a140c2b3cec43e3aeb3deb"
+    "e2a1607ed8a140c2b3cec43e3aeb3deb",
+    "b7caa0b30fc0a2536a1a2feab5f95fbf"
   ],
   "history": [
     {
@@ -99,6 +101,13 @@
       ],
       "lex": "#385 \u2013 Jimmy Wales: Wikipedia",
       "acquired": "Writely (Google Docs)"
+    },
+    {
+      "date": "2026-11-16",
+      "tldr": null,
+      "aidb": [],
+      "lex": "#387 \u2013 George Hotz: Tiny Corp, Twitter, AI Safety, Self-Driving, GPT, AGI & God",
+      "acquired": "Virgin America"
     }
   ],
   "tldr_last": "2026-11-13"
