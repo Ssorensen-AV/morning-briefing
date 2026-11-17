@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "aidb_last": "2026-11-15T12:20:55+00:00",
+  "aidb_last": "2026-11-16T19:21:28+00:00",
   "lex_done": [
     "https://lexfridman.com/math-ai-crisis-transcript",
     "https://lexfridman.com/kyle-vogt-transcript",
@@ -11,7 +11,8 @@
     "https://lexfridman.com/nick-lane-transcript",
     "https://lexfridman.com/ben-shapiro-transcript",
     "https://lexfridman.com/jimmy-wales-transcript",
-    "https://lexfridman.com/george-hotz-3-transcript"
+    "https://lexfridman.com/george-hotz-3-transcript",
+    "https://lexfridman.com/robert-f-kennedy-jr-transcript"
   ],
   "acquired_done": [
     "c42b01bab0f14dfc8ed136c3066bbffc",
@@ -23,7 +24,8 @@
     "23a8377b2bde49b88abc56c9ba1502da",
     "769092593be74c249d88e96189f0d105",
     "e2a1607ed8a140c2b3cec43e3aeb3deb",
-    "b7caa0b30fc0a2536a1a2feab5f95fbf"
+    "b7caa0b30fc0a2536a1a2feab5f95fbf",
+    "ea5c32a13d18d098b8b76f4e33853535"
   ],
   "history": [
     {
@@ -108,7 +110,16 @@
       "aidb": [],
       "lex": "#387 \u2013 George Hotz: Tiny Corp, Twitter, AI Safety, Self-Driving, GPT, AGI & God",
       "acquired": "Virgin America"
+    },
+    {
+      "date": "2026-11-17",
+      "tldr": "2026-11-16",
+      "aidb": [
+        "5 Questions That Could Reshape AI"
+      ],
+      "lex": "#388 \u2013 Robert F. Kennedy Jr: CIA, Power, Corruption, War, Freedom, and Meaning",
+      "acquired": "PayPal"
     }
   ],
-  "tldr_last": "2026-11-13"
+  "tldr_last": "2026-11-16"
 }
