@@ -2,7 +2,7 @@
 
 You are producing today's Morning Briefing. Work from the repository root. These rules apply to the whole run:
 
-- **Never send email.** Only create a Gmail draft, with the Gmail connector's `create_draft`.
+- **Send exactly one email per run,** with the Gmail connector's `send_message`, and only to the recipient named in the routine's own instructions. Never send to anyone else, never send twice, and never create drafts or reply to other mail.
 - **Use no other connectors.** WebSearch is allowed only for the Packers section (TV coverage and the storyline), as STYLE.md describes.
 - **Don't edit the code** in `briefing/` unless a step fails because of it. If you do, say so in the final reply.
 
@@ -22,14 +22,14 @@ You are producing today's Morning Briefing. Work from the repository root. These
 
 7. **Build the email.** Run `python3 briefing/build_email.py "$URL"`, which prints the subject line.
 
-8. **Create the Gmail draft** with `create_draft`:
+8. **Send the email** with `send_message`:
    - **subject:** the printed subject line
    - **htmlBody:** the exact contents of `work/email.html`
    - **body:** the exact contents of `work/email.txt`
-   - **to:** the `to` list in `briefing/config.json`, if it isn't empty
-   - Do not send it.
+   - **to:** the recipient named in the routine's own instructions (the `to` list in `briefing/config.json` only if the instructions name none)
+   - Call it once. Retry once only if it returned an error; never send again after a success.
 
-9. **Save progress.** Only do this after the draft exists:
+9. **Save progress.** Only do this after the email is sent:
    1. Run `python3 briefing/gather.py --commit`.
    2. Save the script as `scripts/$DAY.md`.
    3. `git add state.json scripts`, then commit "Briefing $DAY".
@@ -39,9 +39,9 @@ You are producing today's Morning Briefing. Work from the repository root. These
 
 - **A single source fails in step 2:** carry on with the others, and mention it in the Good Morning section in one light sentence.
 - **Any later step fails and you can't fix it:**
-  1. Still create a Gmail draft with the subject "Morning Briefing: problem on $DAY", stating the failed step and the error in plain English.
+  1. Still send one email to the same recipient with the subject "Morning Briefing: problem on $DAY", stating the failed step and the error in plain English.
   2. Don't run step 9, so tomorrow retries the same episodes.
 
 ## Final reply
 
-Keep it to a few lines: the episodes covered, the total minutes, the audio link, and whether the draft was created.
+Keep it to a few lines: the episodes covered, the total minutes, the audio link, and whether the email was sent.
