@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "aidb_last": "2026-11-16T19:21:28+00:00",
+  "aidb_last": "2026-11-17T22:09:59+00:00",
   "lex_done": [
     "https://lexfridman.com/math-ai-crisis-transcript",
     "https://lexfridman.com/kyle-vogt-transcript",
@@ -13,7 +13,8 @@
     "https://lexfridman.com/jimmy-wales-transcript",
     "https://lexfridman.com/george-hotz-3-transcript",
     "https://lexfridman.com/robert-f-kennedy-jr-transcript",
-    "https://lexfridman.com/benjamin-netanyahu-transcript"
+    "https://lexfridman.com/benjamin-netanyahu-transcript",
+    "https://lexfridman.com/yuval-noah-harari-transcript"
   ],
   "acquired_done": [
     "c42b01bab0f14dfc8ed136c3066bbffc",
@@ -27,7 +28,8 @@
     "e2a1607ed8a140c2b3cec43e3aeb3deb",
     "b7caa0b30fc0a2536a1a2feab5f95fbf",
     "ea5c32a13d18d098b8b76f4e33853535",
-    "8a793886869b7eea87ecc186db8525f6"
+    "8a793886869b7eea87ecc186db8525f6",
+    "aed73a50c078b6fca7a205c239ac0a8f"
   ],
   "history": [
     {
@@ -128,6 +130,15 @@
       "aidb": [],
       "lex": "#389 \u2013 Benjamin Netanyahu: Israel, Palestine, Power, Corruption, Hate, and Peace",
       "acquired": "Snapchat"
+    },
+    {
+      "date": "2026-11-18",
+      "tldr": null,
+      "aidb": [
+        "How Business AI Use is Changing"
+      ],
+      "lex": "#390 \u2013 Yuval Noah Harari: Human Nature, Intelligence, Power, and Conspiracies",
+      "acquired": "Push Pop Press (Facebook Instant Articles) with Todd Bishop"
     }
   ],
   "tldr_last": "2026-11-17"
