@@ -14,7 +14,8 @@
     "https://lexfridman.com/george-hotz-3-transcript",
     "https://lexfridman.com/robert-f-kennedy-jr-transcript",
     "https://lexfridman.com/benjamin-netanyahu-transcript",
-    "https://lexfridman.com/yuval-noah-harari-transcript"
+    "https://lexfridman.com/yuval-noah-harari-transcript",
+    "https://lexfridman.com/larry-lawton-transcript"
   ],
   "acquired_done": [
     "c42b01bab0f14dfc8ed136c3066bbffc",
@@ -29,7 +30,8 @@
     "b7caa0b30fc0a2536a1a2feab5f95fbf",
     "ea5c32a13d18d098b8b76f4e33853535",
     "8a793886869b7eea87ecc186db8525f6",
-    "aed73a50c078b6fca7a205c239ac0a8f"
+    "aed73a50c078b6fca7a205c239ac0a8f",
+    "b844f25d48ba472fa009277bb46b336d"
   ],
   "history": [
     {
@@ -139,7 +141,30 @@
       ],
       "lex": "#390 \u2013 Yuval Noah Harari: Human Nature, Intelligence, Power, and Conspiracies",
       "acquired": "Push Pop Press (Facebook Instant Articles) with Todd Bishop"
+    },
+    {
+      "date": "2026-11-19",
+      "tldr": "2026-11-18",
+      "newsletters": {
+        "neuron": "\ud83d\ude38 Anthropic priced its IPO at $83 a share",
+        "lwiai_weekly": "Last Week (Month) in AI #347 - Nvidia's spy, Anthropic's $1.4T IPO, AI's blue wave"
+      },
+      "lex": "#505 \u2013 GTA 6, Crime, Jewel Heists, Prison, Corrupt Cops, Mafia, Miami & Money",
+      "acquired": "LinkedIn"
     }
   ],
-  "tldr_last": "2026-11-17"
+  "tldr_last": "2026-11-18",
+  "newsletters": {
+    "used": [
+      {
+        "url": "https://lastweekin.ai/p/last-week-month-in-ai-347-nvidias",
+        "title": "Last Week (Month) in AI #347 - Nvidia's spy, Anthropic's $1.4T IPO, AI's blue wave",
+        "date": "2026-11-11",
+        "mode": "weekly_roundup",
+        "used_on": "2026-11-19"
+      }
+    ],
+    "archive_days": [],
+    "archive_stories": []
+  }
 }
