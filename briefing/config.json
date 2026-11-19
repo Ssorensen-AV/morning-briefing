@@ -1,3 +1,11 @@
 {
-  "to": []
+  "to": [],
+  "neuron_sender": "theneuron@newsletter.theneurondaily.com",
+  "neuron_thin_words": 400,
+  "neuron_retry_minutes": 15,
+  "lwiai_feed": "https://lastweekin.ai/feed",
+  "lwiai_sender": "lastweekinai@substack.com",
+  "lwiai_new_days": 21,
+  "filler_days_per_week": 2,
+  "archive_window_days": [14, 90]
 }

@@ -49,8 +49,14 @@ def source_links(sel):
         links["packers"] = [(f"ESPN: {sel['packers']['game']}", sel["packers"]["link"])]
     if sel.get("tldr"):
         links["tldr"] = [(f"TLDR AI: {sel['tldr']['title']}", sel["tldr"]["link"])]
-    for i in sel.get("aidb") or []:
-        links.setdefault("ai", []).append((f"The AI Daily Brief: {i['title']}", i["link"]))
+    nl_path = os.path.join(WORK, "newsletters.json")
+    nl = json.load(open(nl_path)) if os.path.exists(nl_path) else {}
+    if nl.get("neuron"):
+        links["neuron"] = [("The Neuron", nl["neuron"]["link"])]
+    if nl.get("lwiai_weekly"):
+        links["weekly"] = [(nl["lwiai_weekly"]["title"], nl["lwiai_weekly"]["link"])]
+    if nl.get("lwiai_archive"):
+        links["archive"] = [(nl["lwiai_archive"]["title"], nl["lwiai_archive"]["link"])]
     if sel.get("lex"):
         links["lex"] = [(f"Lex Fridman {sel['lex']['title']}", sel["lex"]["url"])]
     if sel.get("acquired") and sel["acquired"].get("page"):
@@ -64,12 +70,16 @@ def links_for(title, links):
         return links.get("packers", [])
     if "tldr" in t:
         return links.get("tldr", [])
+    if "neuron" in t:
+        return links.get("neuron", [])
+    if "weekly roundup" in t:
+        return links.get("weekly", [])
+    if "archive" in t:
+        return links.get("archive", [])
     if "acquired" in t:
         return links.get("acquired", [])
     if "lex" in t or "deep dive" in t:
         return links.get("lex", [])
-    if "ai" in t.split() or "news" in t or "daily brief" in t:
-        return links.get("ai", [])
     return []
 
 

@@ -22,7 +22,6 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE = os.path.join(ROOT, "state.json")
 WORK = os.path.join(ROOT, "work")
 
-AIDB_RSS = "https://anchor.fm/s/f7cac464/podcast/rss"
 LEX_RSS = "https://lexfridman.com/feed/podcast/"
 ACQ_RSS = "https://feeds.transistor.fm/acquired"
 ACQ_SITEMAP = "https://www.acquired.fm/sitemap.xml"
@@ -31,7 +30,6 @@ ESPN = "https://site.api.espn.com/apis/site/v2/sports/football/nfl"
 UA = {"User-Agent": "Mozilla/5.0 (Macintosh) morning-briefing/1.0"}
 
 LEX_NEW_DAYS = 14   # a Lex episode this recent jumps ahead of the back catalog
-AIDB_MAX = 2        # at most this many AI Daily Brief episodes per briefing
 
 NS = {"itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd",
       "content": "http://purl.org/rss/1.0/modules/content/"}
@@ -102,7 +100,7 @@ def load_state():
     if os.path.exists(STATE):
         with open(STATE) as f:
             return json.load(f)
-    return {"version": 1, "aidb_last": None, "tldr_last": None, "lex_done": [], "acquired_done": [], "history": []}
+    return {"version": 1, "tldr_last": None, "lex_done": [], "acquired_done": [], "history": []}
 
 
 # ---------------------------------------------------------------- transcript extractors
@@ -184,15 +182,6 @@ def acq_transcript(url):
 
 
 # ---------------------------------------------------------------- choosing episodes
-
-def choose_aidb(state):
-    items = parse_feed(get(AIDB_RSS))
-    last = dt.datetime.fromisoformat(state["aidb_last"]) if state.get("aidb_last") else None
-    new = [i for i in items if last is None or i["date"] > last]
-    if last is None:
-        new = new[-1:]
-    return new[-AIDB_MAX:]
-
 
 def lex_items():
     out = []
@@ -438,19 +427,6 @@ def acq_items():
 
 # ---------------------------------------------------------------- main
 
-def gather_aidb(state, sel, md):
-    """AI Daily Brief: show notes only (it publishes no transcripts)."""
-    aidb = choose_aidb(state)
-    sel["aidb"] = [{"guid": i["guid"], "title": i["title"], "date": i["date"].isoformat(),
-                    "link": i["link"]} for i in aidb]
-    md.append("## SOURCE: The AI Daily Brief (show notes only; there is no transcript)\n")
-    if not aidb:
-        md.append("No new episode since the last briefing.\n")
-    for i in aidb:
-        md.append(f"### {i['title']}  ({i['date']:%a %b %-d})\n")
-        md.append(wrap(strip_html(i["notes_html"])) + "\n")
-
-
 def gather_tldr(state, sel, md):
     """TLDR AI newsletter: the newest issue not yet covered (weekdays only, so weekends have none)."""
     items = [i for i in parse_feed(get(TLDR_RSS)) if re.search(r"/ai/\d{4}-\d{2}-\d{2}$", i["link"])]
@@ -524,13 +500,13 @@ def gather():
     sel, md, errors = {}, [], []
     md.append(f"# Source material for the briefing ({local_now():%A, %B %-d, %Y})\n")
     force_gb = os.environ.get("PACKERS_FORCE") == "1"
-    for name, step in (("tldr", gather_tldr), ("aidb", gather_aidb), ("lex", gather_lex),
+    for name, step in (("tldr", gather_tldr), ("lex", gather_lex),
                        ("acquired", gather_acquired),
                        ("packers", lambda st, se, m: gather_packers(se, m, force_gb))):
         try:
             step(state, sel, md)
         except Exception as e:                      # one site being down should not sink the briefing
-            sel[name] = [] if name == "aidb" else None
+            sel[name] = None
             errors.append(f"{name}: {type(e).__name__}: {e}")
             md.append(f"(This source could not be fetched today: {e})\n")
     sel["errors"] = errors
@@ -541,12 +517,21 @@ def gather():
     print(json.dumps(sel, indent=2))
 
 
+def newsletter_history():
+    """Which newsletter issues today's brief used (written by newsletters.py build)."""
+    path = os.path.join(WORK, "newsletters.json")
+    if not os.path.exists(path):
+        return None
+    with open(path) as f:
+        nl = json.load(f)
+    return {k: (nl.get(k) or {}).get("title") or (nl.get(k) or {}).get("subject")
+            for k in ("neuron", "lwiai_weekly", "lwiai_archive") if nl.get(k)}
+
+
 def commit():
     with open(os.path.join(WORK, "selection.json")) as f:
         sel = json.load(f)
     state = load_state()
-    if sel.get("aidb"):
-        state["aidb_last"] = max(i["date"] for i in sel["aidb"])
     if sel.get("tldr"):
         state["tldr_last"] = sel["tldr"]["date"]
     if sel.get("lex"):
@@ -556,7 +541,7 @@ def commit():
     state["history"].append({
         "date": local_now().date().isoformat(),
         "tldr": (sel.get("tldr") or {}).get("date"),
-        "aidb": [i["title"] for i in sel.get("aidb") or []],
+        "newsletters": newsletter_history(),
         "lex": (sel.get("lex") or {}).get("title"),
         "acquired": (sel.get("acquired") or {}).get("title"),
     })

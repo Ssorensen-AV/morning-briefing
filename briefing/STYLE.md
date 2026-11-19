@@ -12,7 +12,9 @@ Use exactly these `## ` sections, in this order, and leave out any section with 
 |---|---|---|
 | `## Good Morning` | 60–90 words | The day and date, plus a one-line preview of each section. |
 | `## TLDR AI` | the whole issue, usually 700–900 words | Every story in the TLDR AI issue (see below). |
-| `## AI News` | 0–400 words | From the AI Daily Brief show notes, only what TLDR didn't already cover. |
+| `## The Neuron` | up to about 250 words | Today's Neuron newsletter (see below). |
+| `## Weekly Roundup: Last Week in AI` | up to about 400 words | Only when sources.md has a new Last Week in AI issue. |
+| `## From the Archive` | 2–3 items, about 150 words | Only when sources.md has an archive segment. |
 | `## AI Deep Dive: <guest or topic>` | whatever AI time is left | From the Lex Fridman transcript. |
 | `## Acquired: <episode title>` | 2,450–2,700 words (at least 15 minutes) | See below. |
 | `## Packers Game Day` | 180–280 words | Only when sources.md has a Packers preview (see below). |
@@ -20,20 +22,20 @@ Use exactly these `## ` sections, in this order, and leave out any section with 
 
 **The whole briefing must stay at or under 30 minutes, which is about 4,650 words.** Cori reads at about 160 words per minute.
 - Acquired gets its 15 minutes first. Then the TLDR AI issue is read in full.
-- **The AI sections together get about 1,900 words.** TLDR AI comes first, then AI News, then the Deep Dive gets what's left, usually 600–900 words.
-- If there's no TLDR issue (it doesn't publish on weekends), AI News and the Deep Dive share the 1,900 words, with AI News up to about 700.
-- If there's no new AI Daily Brief episode, or TLDR already covered everything in it, leave out AI News.
+- **The AI sections together get about 1,900 words.** TLDR AI comes first, then the newsletter sections (The Neuron, Weekly Roundup, From the Archive), then the Deep Dive gets what's left, usually 300–900 words.
+- If there's no TLDR issue (it doesn't publish on weekends), the newsletter sections and the Deep Dive share the 1,900 words.
+- Leave out any newsletter section that sources.md doesn't include. Never write one from memory.
 - If there's no Lex episode, leave out the Deep Dive. Don't pad the other sections.
 - On a Packers preview day, take the Packers section's time out of the Deep Dive.
 
 ### `work/highlights.md`: the bullets for the email
 
-Use the same `## ` headings as the script, but only for TLDR AI, AI News, AI Deep Dive, Acquired and Packers Game Day. Under each, write 3–5 short bullets (`- `), each one specific: a number, a name, or a takeaway.
+Use the same `## ` headings as the script, but only for TLDR AI, The Neuron, Weekly Roundup: Last Week in AI, From the Archive, AI Deep Dive, Acquired and Packers Game Day. Under each, write 3–5 short bullets (`- `), each one specific: a number, a name, or a takeaway.
 
 ## Sources and honesty
 
 - **TLDR AI.** Read the full issue: every story, in the newsletter's order and under its section names ("In Headlines and Launches..."). Sponsor items are already removed, so skip any that remain. Rework each summary for the ear (numbers spoken, no symbols, no "minute read" tags) but keep all of its facts, and add nothing it doesn't say. Keep the story count in sources.md as a check: every story must appear.
-- **AI News.** The AI Daily Brief publishes show notes only, so cover only what the notes say. You may add widely known background, framed as background ("for context, ..."). Never invent quotes, numbers or claims and attribute them to the host. Skip sponsor and ad lines entirely.
+- **The Neuron, Weekly Roundup and From the Archive.** Each of these sources in sources.md comes with its own writing prompt, source, date and mode (`daily`, `weekly_roundup` or `archive`). Follow that prompt exactly for its section, and use only the newsletter text under it. Ads and promos are already stripped, so skip any that remain. The archive section must say clearly that it's from an older issue, with that issue's date. After writing it, save the headlines you used as a JSON list of strings to `work/archive_used.json`, so they never repeat.
 - **AI Deep Dive.** You have the full Lex Fridman transcript.
   - Cover the guest, the two or three most interesting ideas, one short, clearly attributed quote, and why it matters.
   - If the episode is from the archive, say so naturally, with something like "from the Lex archive, back in 2019".
@@ -66,4 +68,4 @@ After rendering, `work/audio.json` lists each chapter's minutes.
 | If this happens | Do this |
 |---|---|
 | Acquired is under 15 minutes | Expand it and render again, as many times as it takes. Acquired must never be under 15 minutes, transcript or not. |
-| The total is over 30 minutes | Trim the Deep Dive first, then AI News, then Acquired down toward 15 minutes. Never drop a TLDR story or take Acquired under 15. Render again. |
+| The total is over 30 minutes | Trim the Deep Dive first, then From the Archive, then Acquired down toward 15 minutes. Never drop a TLDR story or take Acquired under 15. Render again. |
