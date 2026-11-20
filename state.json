@@ -16,7 +16,8 @@
     "https://lexfridman.com/benjamin-netanyahu-transcript",
     "https://lexfridman.com/yuval-noah-harari-transcript",
     "https://lexfridman.com/larry-lawton-transcript",
-    "https://lexfridman.com/mohammed-el-kurd-transcript"
+    "https://lexfridman.com/mohammed-el-kurd-transcript",
+    "https://lexfridman.com/joscha-bach-3-transcript"
   ],
   "acquired_done": [
     "c42b01bab0f14dfc8ed136c3066bbffc",
@@ -33,7 +34,8 @@
     "8a793886869b7eea87ecc186db8525f6",
     "aed73a50c078b6fca7a205c239ac0a8f",
     "b844f25d48ba472fa009277bb46b336d",
-    "985823cf8bee8f13f9511c184af852c2"
+    "985823cf8bee8f13f9511c184af852c2",
+    "f59fb0d63ec187c0409fe9d82c003964"
   ],
   "history": [
     {
@@ -162,9 +164,18 @@
       },
       "lex": "#391 \u2013 Mohammed El-Kurd: Palestine",
       "acquired": "ExactTarget (acquired by Salesforce) with Scott Dorsey"
+    },
+    {
+      "date": "2026-11-20",
+      "tldr": "2026-11-19",
+      "newsletters": {
+        "neuron": "Would you give Meta's AI your phone?"
+      },
+      "lex": "#392 \u2013 Joscha Bach: Life, Intelligence, Consciousness, AI & the Future of Humans",
+      "acquired": "Midroll + Stitcher (acquired by Scripps)"
     }
   ],
-  "tldr_last": "2026-11-18",
+  "tldr_last": "2026-11-19",
   "newsletters": {
     "used": [
       {
