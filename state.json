@@ -17,7 +17,8 @@
     "https://lexfridman.com/yuval-noah-harari-transcript",
     "https://lexfridman.com/larry-lawton-transcript",
     "https://lexfridman.com/mohammed-el-kurd-transcript",
-    "https://lexfridman.com/joscha-bach-3-transcript"
+    "https://lexfridman.com/joscha-bach-3-transcript",
+    "https://lexfridman.com/andrew-huberman-4-transcript"
   ],
   "acquired_done": [
     "c42b01bab0f14dfc8ed136c3066bbffc",
@@ -35,7 +36,8 @@
     "aed73a50c078b6fca7a205c239ac0a8f",
     "b844f25d48ba472fa009277bb46b336d",
     "985823cf8bee8f13f9511c184af852c2",
-    "f59fb0d63ec187c0409fe9d82c003964"
+    "f59fb0d63ec187c0409fe9d82c003964",
+    "9b046e7c1d8038f83d04161597933347"
   ],
   "history": [
     {
@@ -173,9 +175,19 @@
       },
       "lex": "#392 \u2013 Joscha Bach: Life, Intelligence, Consciousness, AI & the Future of Humans",
       "acquired": "Midroll + Stitcher (acquired by Scripps)"
+    },
+    {
+      "date": "2026-11-21",
+      "tldr": "2026-11-20",
+      "newsletters": {
+        "neuron": "Office Hours (AI edition) are in session \ud83e\udd16",
+        "lwiai_weekly": "Last Week in AI #348 - IPO->Correction, new GPTs and Geminis, Nvidia\u2019s Fate"
+      },
+      "lex": "#393 \u2013 Andrew Huberman: Relationships, Drama, Betrayal, Sex, and Love",
+      "acquired": "Waze"
     }
   ],
-  "tldr_last": "2026-11-19",
+  "tldr_last": "2026-11-20",
   "newsletters": {
     "used": [
       {
@@ -184,6 +196,13 @@
         "date": "2026-11-11",
         "mode": "weekly_roundup",
         "used_on": "2026-11-19"
+      },
+      {
+        "url": "https://lastweekin.ai/p/last-week-in-ai-348-ipo-correction",
+        "title": "Last Week in AI #348 - IPO->Correction, new GPTs and Geminis, Nvidia\u2019s Fate",
+        "date": "2026-11-21",
+        "mode": "weekly_roundup",
+        "used_on": "2026-11-21"
       }
     ],
     "archive_days": [],
