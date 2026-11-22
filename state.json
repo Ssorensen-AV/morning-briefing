@@ -18,7 +18,8 @@
     "https://lexfridman.com/larry-lawton-transcript",
     "https://lexfridman.com/mohammed-el-kurd-transcript",
     "https://lexfridman.com/joscha-bach-3-transcript",
-    "https://lexfridman.com/andrew-huberman-4-transcript"
+    "https://lexfridman.com/andrew-huberman-4-transcript",
+    "https://lexfridman.com/neri-oxman-transcript"
   ],
   "acquired_done": [
     "c42b01bab0f14dfc8ed136c3066bbffc",
@@ -37,7 +38,8 @@
     "b844f25d48ba472fa009277bb46b336d",
     "985823cf8bee8f13f9511c184af852c2",
     "f59fb0d63ec187c0409fe9d82c003964",
-    "9b046e7c1d8038f83d04161597933347"
+    "9b046e7c1d8038f83d04161597933347",
+    "456e8967279ba511a9db49283cbb92d6"
   ],
   "history": [
     {
@@ -185,6 +187,15 @@
       },
       "lex": "#393 \u2013 Andrew Huberman: Relationships, Drama, Betrayal, Sex, and Love",
       "acquired": "Waze"
+    },
+    {
+      "date": "2026-11-22",
+      "tldr": null,
+      "newsletters": {
+        "lwiai_archive": "LWiAI Podcast #258 - Opus 5.5, Sol and Luna, Muse, DeepSeek-V4.1-Flash, Xi"
+      },
+      "lex": "#394 \u2013 Neri Oxman: Biology, Art, and Science of Design & Engineering with Nature",
+      "acquired": "Special: An Acquirer\u2019s View into M&A with Taylor Barada, head of Corp Dev at Adobe"
     }
   ],
   "tldr_last": "2026-11-20",
@@ -203,9 +214,19 @@
         "date": "2026-11-21",
         "mode": "weekly_roundup",
         "used_on": "2026-11-21"
+      },
+      {
+        "url": "https://lastweekin.ai/p/lwiai-podcast-258-opus-55-sol-and",
+        "title": "LWiAI Podcast #258 - Opus 5.5, Sol and Luna, Muse, DeepSeek-V4.1-Flash, Xi",
+        "date": "2026-10-03",
+        "mode": "archive",
+        "used_on": "2026-11-22",
+        "stories": []
       }
     ],
-    "archive_days": [],
+    "archive_days": [
+      "2026-11-22"
+    ],
     "archive_stories": []
   }
 }
