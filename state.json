@@ -20,7 +20,8 @@
     "https://lexfridman.com/joscha-bach-3-transcript",
     "https://lexfridman.com/andrew-huberman-4-transcript",
     "https://lexfridman.com/neri-oxman-transcript",
-    "https://lexfridman.com/walter-isaacson-transcript"
+    "https://lexfridman.com/walter-isaacson-transcript",
+    "https://lexfridman.com/james-sexton-transcript"
   ],
   "acquired_done": [
     "c42b01bab0f14dfc8ed136c3066bbffc",
@@ -41,7 +42,8 @@
     "f59fb0d63ec187c0409fe9d82c003964",
     "9b046e7c1d8038f83d04161597933347",
     "456e8967279ba511a9db49283cbb92d6",
-    "bd91e1672954bd92af237c84787c8ec4"
+    "bd91e1672954bd92af237c84787c8ec4",
+    "063b9a9232c2b2ac46faa9960dc5288f"
   ],
   "history": [
     {
@@ -207,9 +209,18 @@
       },
       "lex": "#395 \u2013 Walter Isaacson: Elon Musk, Steve Jobs, Einstein, Da Vinci & Ben Franklin",
       "acquired": "Jet"
+    },
+    {
+      "date": "2026-11-24",
+      "tldr": "2026-11-23",
+      "newsletters": {
+        "neuron": "\ud83d\ude3a Nvidia\u2019s board said no. Then yes."
+      },
+      "lex": "#396 \u2013 James Sexton: Divorce Lawyer on Marriage, Relationships, Sex, Lies & Love",
+      "acquired": "Android"
     }
   ],
-  "tldr_last": "2026-11-20",
+  "tldr_last": "2026-11-23",
   "newsletters": {
     "used": [
       {
