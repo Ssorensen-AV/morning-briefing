@@ -21,7 +21,8 @@
     "https://lexfridman.com/andrew-huberman-4-transcript",
     "https://lexfridman.com/neri-oxman-transcript",
     "https://lexfridman.com/walter-isaacson-transcript",
-    "https://lexfridman.com/james-sexton-transcript"
+    "https://lexfridman.com/james-sexton-transcript",
+    "https://lexfridman.com/greg-lukianoff-transcript"
   ],
   "acquired_done": [
     "c42b01bab0f14dfc8ed136c3066bbffc",
@@ -43,7 +44,8 @@
     "9b046e7c1d8038f83d04161597933347",
     "456e8967279ba511a9db49283cbb92d6",
     "bd91e1672954bd92af237c84787c8ec4",
-    "063b9a9232c2b2ac46faa9960dc5288f"
+    "063b9a9232c2b2ac46faa9960dc5288f",
+    "0892e3d76c8e4e1591f9b2c695106589"
   ],
   "history": [
     {
@@ -218,9 +220,18 @@
       },
       "lex": "#396 \u2013 James Sexton: Divorce Lawyer on Marriage, Relationships, Sex, Lies & Love",
       "acquired": "Android"
+    },
+    {
+      "date": "2026-11-25",
+      "tldr": "2026-11-24",
+      "newsletters": {
+        "neuron": "\ud83d\ude3a What Google's new AI exam actually tests"
+      },
+      "lex": "#397 \u2013 Greg Lukianoff: Cancel Culture, Deplatforming, Censorship & Free Speech",
+      "acquired": "Inside the M&A Press with Bloomberg's Alex Sherman"
     }
   ],
-  "tldr_last": "2026-11-23",
+  "tldr_last": "2026-11-24",
   "newsletters": {
     "used": [
       {
