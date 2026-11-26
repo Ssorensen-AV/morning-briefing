@@ -22,7 +22,8 @@
     "https://lexfridman.com/neri-oxman-transcript",
     "https://lexfridman.com/walter-isaacson-transcript",
     "https://lexfridman.com/james-sexton-transcript",
-    "https://lexfridman.com/greg-lukianoff-transcript"
+    "https://lexfridman.com/greg-lukianoff-transcript",
+    "https://lexfridman.com/mark-zuckerberg-3-transcript"
   ],
   "acquired_done": [
     "c42b01bab0f14dfc8ed136c3066bbffc",
@@ -45,7 +46,8 @@
     "456e8967279ba511a9db49283cbb92d6",
     "bd91e1672954bd92af237c84787c8ec4",
     "063b9a9232c2b2ac46faa9960dc5288f",
-    "0892e3d76c8e4e1591f9b2c695106589"
+    "0892e3d76c8e4e1591f9b2c695106589",
+    "559d8432a44217b12157efdf50b3485f"
   ],
   "history": [
     {
@@ -229,9 +231,18 @@
       },
       "lex": "#397 \u2013 Greg Lukianoff: Cancel Culture, Deplatforming, Censorship & Free Speech",
       "acquired": "Inside the M&A Press with Bloomberg's Alex Sherman"
+    },
+    {
+      "date": "2026-11-26",
+      "tldr": "2026-11-25",
+      "newsletters": {
+        "neuron": "Amodei says AI shouldn't govern us"
+      },
+      "lex": "#398 \u2013 Mark Zuckerberg: First Interview in the Metaverse",
+      "acquired": "Zillow + Trulia (with Zillow Group CFO Kathleen Philips)"
     }
   ],
-  "tldr_last": "2026-11-24",
+  "tldr_last": "2026-11-25",
   "newsletters": {
     "used": [
       {
