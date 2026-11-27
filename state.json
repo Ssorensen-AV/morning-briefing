@@ -23,7 +23,8 @@
     "https://lexfridman.com/walter-isaacson-transcript",
     "https://lexfridman.com/james-sexton-transcript",
     "https://lexfridman.com/greg-lukianoff-transcript",
-    "https://lexfridman.com/mark-zuckerberg-3-transcript"
+    "https://lexfridman.com/mark-zuckerberg-3-transcript",
+    "https://lexfridman.com/jared-kushner-transcript"
   ],
   "acquired_done": [
     "c42b01bab0f14dfc8ed136c3066bbffc",
@@ -47,7 +48,8 @@
     "bd91e1672954bd92af237c84787c8ec4",
     "063b9a9232c2b2ac46faa9960dc5288f",
     "0892e3d76c8e4e1591f9b2c695106589",
-    "559d8432a44217b12157efdf50b3485f"
+    "559d8432a44217b12157efdf50b3485f",
+    "8f5833ea04c81885fc1c4cf10e6a4a18"
   ],
   "history": [
     {
@@ -240,9 +242,18 @@
       },
       "lex": "#398 \u2013 Mark Zuckerberg: First Interview in the Metaverse",
       "acquired": "Zillow + Trulia (with Zillow Group CFO Kathleen Philips)"
+    },
+    {
+      "date": "2026-11-27",
+      "tldr": "2026-11-26",
+      "newsletters": {
+        "neuron": "\ud83d\ude3a OpenAI claims matrix math's exact limit"
+      },
+      "lex": "#399 \u2013 Jared Kushner: Israel, Palestine, Hamas, Gaza, Iran, and the Middle East",
+      "acquired": "NeXT (Live show at the GeekWire Summit)"
     }
   ],
-  "tldr_last": "2026-11-25",
+  "tldr_last": "2026-11-26",
   "newsletters": {
     "used": [
       {
