@@ -24,7 +24,8 @@
     "https://lexfridman.com/james-sexton-transcript",
     "https://lexfridman.com/greg-lukianoff-transcript",
     "https://lexfridman.com/mark-zuckerberg-3-transcript",
-    "https://lexfridman.com/jared-kushner-transcript"
+    "https://lexfridman.com/jared-kushner-transcript",
+    "https://lexfridman.com/elon-musk-4-transcript"
   ],
   "acquired_done": [
     "c42b01bab0f14dfc8ed136c3066bbffc",
@@ -49,7 +50,8 @@
     "063b9a9232c2b2ac46faa9960dc5288f",
     "0892e3d76c8e4e1591f9b2c695106589",
     "559d8432a44217b12157efdf50b3485f",
-    "8f5833ea04c81885fc1c4cf10e6a4a18"
+    "8f5833ea04c81885fc1c4cf10e6a4a18",
+    "1c93f39fb8953d06e7049fc015271a67"
   ],
   "history": [
     {
@@ -251,9 +253,19 @@
       },
       "lex": "#399 \u2013 Jared Kushner: Israel, Palestine, Hamas, Gaza, Iran, and the Middle East",
       "acquired": "NeXT (Live show at the GeekWire Summit)"
+    },
+    {
+      "date": "2026-11-28",
+      "tldr": "2026-11-27",
+      "newsletters": {
+        "neuron": "What could you hand off to AI this week?",
+        "lwiai_archive": "LWiAI Podcast #257 - GPT 6 Astra, AI Extinction, Security Incidents"
+      },
+      "lex": "#400 \u2013 Elon Musk: War, AI, Aliens, Politics, Physics, Video Games, and Humanity",
+      "acquired": "Skype"
     }
   ],
-  "tldr_last": "2026-11-26",
+  "tldr_last": "2026-11-27",
   "newsletters": {
     "used": [
       {
@@ -277,10 +289,19 @@
         "mode": "archive",
         "used_on": "2026-11-22",
         "stories": []
+      },
+      {
+        "url": "https://lastweekin.ai/p/lwiai-podcast-257-gpt-6-astra-ai",
+        "title": "LWiAI Podcast #257 - GPT 6 Astra, AI Extinction, Security Incidents",
+        "date": "2026-09-24",
+        "mode": "archive",
+        "used_on": "2026-11-28",
+        "stories": []
       }
     ],
     "archive_days": [
-      "2026-11-22"
+      "2026-11-22",
+      "2026-11-28"
     ],
     "archive_stories": []
   }
